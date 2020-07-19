@@ -245,7 +245,7 @@
 
     
         <meta property="article:published_time" content="Sat Jul 18 2020 20:10:51 GMT+0800">
-        <meta property="article:modified_time" content="Sat Jul 18 2020 23:11:38 GMT+0800">
+        <meta property="article:modified_time" content="Sun Jul 19 2020 08:46:19 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -442,17 +442,14 @@
             <p class="post-title">
                 sss
             </p>
-            <pre><code class="C++"> int main(){
+            <pre><code class="lang-C++"> int main(){
      cout&lt;&lt;&quot;Hello,world&quot;&lt;&lt;endl;
- }</code></pre>
-<p>$$\lim\limits_{x \to \infty} \exp(-x) = 0$$</p>
-<p>$$\sum_{x=1}^\infty{x^2}$$</p>
-<p>$$<br>  \begin{matrix}<br>   1 &amp; 2 &amp; 3 \<br>   4 &amp; 5 &amp; 6 \<br>   7 &amp; 8 &amp; 9<br>  \end{matrix}<br>$$</p>
-<p>$\Gamma$、$\iota$、$\sigma$、$\phi$、$\upsilon$、$\Pi$、$\Bbbk$、$\heartsuit$、$\int$、$\oint$</p>
-<pre><code class="python">import numpy as np
+ }
+</code></pre>
+<script type="math/tex; mode=display">\lim\limits_{x \to \infty} \exp(-x) = 0</script><script type="math/tex; mode=display">\sum_{x=1}^\infty{x^2}</script><script type="math/tex; mode=display">
+  \begin{bmatrix} a&b\\c&d \end{bmatrix} \quad</script><p>$\Gamma$、$\iota$、$\sigma$、$\phi$、$\upsilon$、$\Pi$、$\Bbbk$、$\heartsuit$、$\int$、$\oint$</p>
+<pre><code class="lang-python">import numpy as np
 print(&quot;hello,world&quot;)
-
-
 </code></pre>
 
             
@@ -685,6 +682,26 @@ print(&quot;hello,world&quot;)
 
 <!-- MathJax Load-->
 
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
 
 <!-- Bing Background -->
 
@@ -723,6 +740,21 @@ console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viose
 
                 </main>
             </div>
-        </body>
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
     
 </html>
