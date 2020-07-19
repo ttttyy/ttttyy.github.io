@@ -476,12 +476,49 @@ print(&quot;hello,world&quot;)
                 <!-- Post Comments -->
                 
                     
+    <!-- 使用 Gitalk -->
+<div id="gitalk-comment">
+    <!-- Gitalk 评论框 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script>
+    var gitalk = new Gitalk({
+            clientID: 'Iv1.768c6d0d0c457f2b',
+            clientSecret: '74abf412498a4044c99c6708ed52c3329f8f91a4',
+            repo: 'https://github.com/ttttyy/comment.git',
+            owner: 'ttttyy',
+            admin: ['ttttyy'],
+            // facebook-like distraction free mode
+            distractionFreeMode: false
+        })
+   gitalk.render('gitalk-container')
+</script>
+</div>
+<style>
+    #gitalk-comment {
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
                 
             </div>
 
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
+    
+        <a href="/2020/07/19/Matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
     
 
     <!-- Section Spacer -->
@@ -640,6 +677,8 @@ print(&quot;hello,world&quot;)
 
 
 
+
+   <!-- GitTalk -->
 
 
 
