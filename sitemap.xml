@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ttttyy.github.io/about/index.html</loc>
+    
+    <lastmod>2020-09-04T13:27:44.822Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ttttyy.github.io/2020/07/19/Matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
     
-    <lastmod>2020-07-20T04:19:00.511Z</lastmod>
+    <lastmod>2020-09-04T13:16:09.275Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ttttyy.github.io/data/fluid_config.json</loc>
+    
+    <lastmod>2020-09-04T12:26:22.016Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>https://ttttyy.github.io/2020/07/18/sss/</loc>
     
     <lastmod>2020-07-19T00:46:19.679Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ttttyy.github.io/about/index.html</loc>
-    
-    <lastmod>2020-07-18T14:54:22.304Z</lastmod>
     
   </url>
   
