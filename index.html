@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.svg">
-  <link rel="icon" type="image/png" href="/img/avatar.svg">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.webp">
+  <link rel="icon" type="image/png" href="/img/favicon.webp">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -176,7 +176,7 @@
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/07/19/Matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" target="_self">
-          <img src="/img/Matlab_Logo.webp" srcset="/img/loading.gif" alt="Matlab在高数线代学习中的应用(一)">
+          <img src="http://qg50hywnq.hb-bkt.clouddn.com/Matlab_Logo%20%282%29.webp" srcset="/img/loading.gif" alt="Matlab在高数线代学习中的应用(一)">
         </a>
       </div>
     
@@ -191,7 +191,7 @@
           
             
           
-          前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Matlab是一个功能十分强大的数学软件，如果在高数和线代学习中可以熟练使用Matlab解决一些繁杂的计算问题，验证手工计算的正确性，对学习大有裨益。但是网络上的大多数博文都只是对某个问题提出解决方案，并没有一个完整的总结，给搜索带来了不便，因此，本系列博文将对高数和线代中Matlab的应用做一总结，方便读者查阅。因本人水
+          前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Matlab是一个功能十分强大的数学软件，如果在高数和线代学习中可以熟练使用Matlab解决一些繁杂的计算问题，验证手工计算的正确性，对学习大有裨益。但是网络上的大多数博文都只是对某个问题提出解决方案，并没有一个完整的总结，给搜索带来了不便，因此，本系列博文将对高等数学和线性代数中Matlab的应用做一总结，方便读者查阅。
         </a>
       </p>
 
@@ -212,6 +212,8 @@
               <a href="/tags/Math/">Math</a>
             
               <a href="/tags/Matlab/">Matlab</a>
+            
+              <a href="/tags/%E9%AB%98%E6%95%B0/">高数</a>
             
           </div>
         
@@ -351,6 +353,37 @@ Quick
       <i class="iconfont icon-love"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
         <span>Fluid</span></a>
+    </div>
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("07/16/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
     </div>
     
 

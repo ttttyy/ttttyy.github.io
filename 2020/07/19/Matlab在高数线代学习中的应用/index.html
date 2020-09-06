@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.svg">
-  <link rel="icon" type="image/png" href="/img/avatar.svg">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.webp">
+  <link rel="icon" type="image/png" href="/img/favicon.webp">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      840 字
+      977 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      15
        分钟
     </span>
   
@@ -217,12 +217,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月4日 晚上
+                  本文最后更新于：2020年9月6日 晚上
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Matlab是一个功能十分强大的数学软件，如果在高数和线代学习中可以熟练使用Matlab解决一些繁杂的计算问题，验证手工计算的正确性，对学习大有裨益。但是网络上的大多数博文都只是对某个问题提出解决方案，并没有一个完整的总结，给搜索带来了不便，因此，本系列博文将对高数和线代中Matlab的应用做一总结，方便读者查阅。因本人水平所限，博文中存在一些不当之处，欢迎各位读者在评论区提出批评和指正。</p>
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Matlab是一个功能十分强大的数学软件，如果在高数和线代学习中可以熟练使用Matlab解决一些繁杂的计算问题，验证手工计算的正确性，对学习大有裨益。但是网络上的大多数博文都只是对某个问题提出解决方案，并没有一个完整的总结，给搜索带来了不便，因此，本系列博文将对高等数学和线性代数中Matlab的应用做一总结，方便读者查阅。因本人水平所限，博文中存在一些不当之处，欢迎各位读者在评论区提出批评和指正。</p>
 <h3 id="高数"><a href="#高数" class="headerlink" title="高数"></a>高数</h3><h4 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h4><ol>
 <li><p>计算$\displaystyle\lim_{x \rightarrow + \infty}(1+\frac{1}{x})^x$</p>
  <div class="hljs"><pre><code class="hljs matlab">syms x
@@ -231,6 +231,8 @@ limit((<span class="hljs-number">1</span>+<span class="hljs-number">1</span>/x)^
 <span class="hljs-comment">%结果</span>
 <span class="hljs-built_in">ans</span>=<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span>)</code></pre></div>
 </li>
+</ol>
+<ol>
 <li><p>计算$\displaystyle\lim_{x \rightarrow 3^+}f(x)=\frac{x-3}{|x-3|}$的极限</p>
  <div class="hljs"><pre><code class="hljs matlab">syms x
 limit((x<span class="hljs-number">-3</span>)/<span class="hljs-built_in">abs</span>(x<span class="hljs-number">-3</span>),x,<span class="hljs-number">3</span>,<span class="hljs-string">'right'</span>)
@@ -291,7 +293,10 @@ x - -------- + -------- - -------- + -------- - -------- - <span class="hljs-num
         <span class="hljs-number">2</span>          <span class="hljs-number">3</span>          <span class="hljs-number">4</span>          <span class="hljs-number">5</span>          <span class="hljs-number">6</span></code></pre></div>
 </li>
 </ol>
-<h4 id="积分"><a href="#积分" class="headerlink" title="积分"></a>积分</h4><ol>
+<h4 id="积分"><a href="#积分" class="headerlink" title="积分"></a>积分</h4><ul>
+<li>一元积分</li>
+</ul>
+<ol>
 <li><p>求$f(x)=\int{xcos^2x}dx$</p>
  <div class="hljs"><pre><code class="hljs matlab">syms x f
 f=x*(<span class="hljs-built_in">cos</span>(x))^<span class="hljs-number">2</span>;
@@ -310,6 +315,23 @@ f=(x+<span class="hljs-built_in">sin</span>(x))/(<span class="hljs-number">1</sp
 <span class="hljs-built_in">ans</span>=<span class="hljs-built_in">pi</span>/<span class="hljs-number">2</span></code></pre></div>
 </li>
 </ol>
+<ul>
+<li>多元积分</li>
+</ul>
+<ol>
+<li>计算$\int_{0}^{1}\int_{x^2}^x\frac{1}{x^2+y^2}dxdy$</li>
+</ol>
+<div class="hljs"><pre><code class="hljs matlab">fun=@(x,y)<span class="hljs-number">1.</span>/<span class="hljs-built_in">sqrt</span>(x.^<span class="hljs-number">2</span>+y.^<span class="hljs-number">2</span>)
+ymax=@(x)x
+ymin=@(x)x^<span class="hljs-number">2</span>
+integral2(fun,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,ymin,ymax)
+<span class="hljs-built_in">ans</span>=<span class="hljs-number">0.4142</span></code></pre></div>
+<ol>
+<li>计算$\int_{0}^{\pi}\int_0^1\int_{-1}^{1}(ysinx+zcosx)dxdydz$</li>
+</ol>
+<div class="hljs"><pre><code class="hljs matlab">fun=@(x,y,z)y.*<span class="hljs-built_in">sin</span>(x)+z.*<span class="hljs-built_in">cos</span>(x)
+integral3(fun,<span class="hljs-number">0</span>,<span class="hljs-built_in">pi</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
+<span class="hljs-built_in">ans</span>=<span class="hljs-number">2.0000</span></code></pre></div>
 <h4 id="微分方程"><a href="#微分方程" class="headerlink" title="微分方程"></a>微分方程</h4><p>Dy代表y的导数，D2y代表y的二阶导数， D3y代表y的三阶导数…</p>
 <ol>
 <li><p>求解微分方程$\frac{\mathrm d y}{\mathrm d x}=10^{x+y}$</p>
@@ -357,6 +379,21 @@ fimplicit3(f,<span class="hljs-string">'EdgeColor'</span>,<span class="hljs-stri
 </li>
 </ol>
 <img src="/2020/07/19/Matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/ma.webp" srcset="/img/loading.gif" class="" title="This is an example image">
+<h4 id="级数"><a href="#级数" class="headerlink" title="级数"></a>级数</h4><ol>
+<li><p>讨论下列级数的敛散性</p>
+<ol>
+<li><p>$\sum_{n=1}^{\infty}\limits\frac{1}{n^2}$</p>
+<div class="hljs"><pre><code class="hljs matlab">syms n
+symsum(<span class="hljs-number">1</span>/n^<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-built_in">inf</span>)
+<span class="hljs-built_in">ans</span>=<span class="hljs-built_in">pi</span>^<span class="hljs-number">2</span>/<span class="hljs-number">6</span></code></pre></div>
+<p>2.$\sum_{n=1}^{\infty}\limits(-1)^n$</p>
+<div class="hljs"><pre><code class="hljs matlab">syms n
+symsum((<span class="hljs-number">-1</span>)^n,<span class="hljs-number">1</span>,<span class="hljs-built_in">inf</span>)
+<span class="hljs-built_in">ans</span>=NaN</code></pre></div>
+</li>
+</ol>
+</li>
+</ol>
 
             </div>
             <hr>
@@ -370,6 +407,8 @@ fimplicit3(f,<span class="hljs-string">'EdgeColor'</span>,<span class="hljs-stri
                       <a class="hover-with-bg" href="/tags/Math/">Math</a>
                     
                       <a class="hover-with-bg" href="/tags/Matlab/">Matlab</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%AB%98%E6%95%B0/">高数</a>
                     
                   </div>
                 
@@ -493,6 +532,37 @@ fimplicit3(f,<span class="hljs-string">'EdgeColor'</span>,<span class="hljs-stri
       <i class="iconfont icon-love"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
         <span>Fluid</span></a>
+    </div>
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("07/16/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
     </div>
     
 
@@ -619,6 +689,45 @@ fimplicit3(f,<span class="hljs-string">'EdgeColor'</span>,<span class="hljs-stri
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 
