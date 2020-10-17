@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Glitter">
   <meta name="keywords" content="">
-  <title>sss - Glitter&#39;s Blog</title>
+  <title>Matlab在高数线代学习中的应用(2).md - Glitter&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -174,8 +174,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-18 20:10" pubdate>
-      2020年7月18日 晚上
+    <time datetime="2020-10-02 21:12" pubdate>
+      2020年10月2日 晚上
     </time>
   </div>
 
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      52 字
+      358 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      6
        分钟
     </span>
   
@@ -225,23 +225,66 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">sss</h1>
+            <h1 style="display: none">Matlab在高数线代学习中的应用(2).md</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月19日 早上
+                  本文最后更新于：2020年10月17日 晚上
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-               <div class="hljs"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Hello,world"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;
-&#125;</code></pre></div>
-<script type="math/tex; mode=display">\lim\limits_{x \to \infty} \exp(-x) = 0</script><script type="math/tex; mode=display">\sum_{x=1}^\infty{x^2}</script><script type="math/tex; mode=display">
-  \begin{bmatrix} a&b\\c&d \end{bmatrix} \quad</script><p>$\Gamma$、$\iota$、$\sigma$、$\phi$、$\upsilon$、$\Pi$、$\Bbbk$、$\heartsuit$、$\int$、$\oint$</p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-print(<span class="hljs-string">"hello,world"</span>)</code></pre></div>
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文是本系列的第二篇文章，讲述matlab在线性代数学习中的应用</p>
+<h4 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h4><ol>
+<li>求矩阵$\begin{bmatrix} 1&amp;-2&amp;4\-5&amp; 2&amp;0\\1&amp;0&amp;3 \end{bmatrix}$的行列式</li>
+</ol>
+<div class="hljs"><pre><code class="hljs matlab">A = [<span class="hljs-number">1</span> <span class="hljs-number">-2</span> <span class="hljs-number">4</span>; <span class="hljs-number">-5</span> <span class="hljs-number">2</span> <span class="hljs-number">0</span>; <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">3</span>]
+d = det(A)
+d=<span class="hljs-number">-32</span></code></pre></div>
+<h4 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h4><h5 id="求逆"><a href="#求逆" class="headerlink" title="求逆"></a>求逆</h5><ol>
+<li>计算矩阵$\begin{bmatrix}1&amp;0&amp;2\-1&amp;5&amp;0\\0&amp;-3&amp;9\end{bmatrix}$的逆矩阵</li>
+</ol>
+<div class="hljs"><pre><code class="hljs matlab">X = [<span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">2</span>; <span class="hljs-number">-1</span> <span class="hljs-number">5</span> <span class="hljs-number">0</span>; <span class="hljs-number">0</span> <span class="hljs-number">3</span> <span class="hljs-number">-9</span>]
+Y = inv(X)
+Y = <span class="hljs-number">3</span>×<span class="hljs-number">3</span>
 
+    <span class="hljs-number">0.8824</span>   <span class="hljs-number">-0.1176</span>    <span class="hljs-number">0.1961</span>
+    <span class="hljs-number">0.1765</span>    <span class="hljs-number">0.1765</span>    <span class="hljs-number">0.0392</span>
+    <span class="hljs-number">0.0588</span>    <span class="hljs-number">0.0588</span>   <span class="hljs-number">-0.0980</span></code></pre></div>
+<h5 id="LU分解"><a href="#LU分解" class="headerlink" title="LU分解"></a>LU分解</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过 LU分解，可以将一个矩阵$A$分解为一个上三角矩阵$U$、一个下三角矩阵$L$ 和一个置换矩阵$P$，并满足$PA=LU$</p>
+<ol>
+<li><p>求$\begin{bmatrix}10&amp;-7&amp;0\-3&amp;2&amp;6\\5&amp;-1&amp;5\end{bmatrix}$的LU分解</p>
+<div class="hljs"><pre><code class="hljs matlab">A = [<span class="hljs-number">10</span> <span class="hljs-number">-7</span> <span class="hljs-number">0</span>
+    <span class="hljs-number">-3</span>  <span class="hljs-number">2</span> <span class="hljs-number">6</span>
+    <span class="hljs-number">5</span> <span class="hljs-number">-1</span> <span class="hljs-number">5</span>];
+[L,U] = lu(A)
+L = <span class="hljs-number">3</span>×<span class="hljs-number">3</span>
+
+    <span class="hljs-number">1.0000</span>         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>
+   <span class="hljs-number">-0.3000</span>   <span class="hljs-number">-0.0400</span>    <span class="hljs-number">1.0000</span>
+    <span class="hljs-number">0.5000</span>    <span class="hljs-number">1.0000</span>         <span class="hljs-number">0</span>
+
+U = <span class="hljs-number">3</span>×<span class="hljs-number">3</span>
+
+   <span class="hljs-number">10.0000</span>   <span class="hljs-number">-7.0000</span>         <span class="hljs-number">0</span>
+         <span class="hljs-number">0</span>    <span class="hljs-number">2.5000</span>    <span class="hljs-number">5.0000</span>
+         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>    <span class="hljs-number">6.2000</span></code></pre></div>
+<h5 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h5></li>
+<li><p>求矩阵$\begin{bmatrix}3&amp;2&amp;4\-1&amp;1&amp;2\\9&amp;5&amp;10\end{bmatrix}$的秩</p>
+<div class="hljs"><pre><code class="hljs matlab">A = [<span class="hljs-number">3</span> <span class="hljs-number">2</span> <span class="hljs-number">4</span>; <span class="hljs-number">-1</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span>; <span class="hljs-number">9</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span>]
+rank(A)
+<span class="hljs-built_in">ans</span> = <span class="hljs-number">2</span></code></pre></div>
+<h5 id="高斯消元法"><a href="#高斯消元法" class="headerlink" title="高斯消元法"></a>高斯消元法</h5><div class="hljs"><pre><code class="hljs matlab">A=[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>;<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>;<span class="hljs-number">5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
+rref(A)
+<span class="hljs-built_in">ans</span> =
+
+     <span class="hljs-number">1</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>
+     <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>
+     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">0</span>
+     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span></code></pre></div>
+</li>
+</ol>
+<h4 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h4>
             </div>
             <hr>
             <div>
@@ -264,18 +307,12 @@ print(<span class="hljs-string">"hello,world"</span>)</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/19/Matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Matlab在高数线代学习中的应用(一)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/07/18/hello-world/">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2020/07/19/Matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">
+                        <span class="hidden-mobile">Matlab在高数线代学习中的应用(一)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -477,7 +514,7 @@ print(<span class="hljs-string">"hello,world"</span>)</code></pre></div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "sss&nbsp;",
+        "Matlab在高数线代学习中的应用(2).md&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -538,6 +575,45 @@ print(<span class="hljs-string">"hello,world"</span>)</code></pre></div>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

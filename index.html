@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -149,7 +149,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://qg50hywnq.hb-bkt.clouddn.com/galaxy.webp') no-repeat center center;
+         style="background: url('/img/galaxy.webp') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -182,6 +182,52 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/10/02/matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A82/">Matlab在高数线代学习中的应用(2).md</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/02/matlab%E5%9C%A8%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A82/">
+          
+          
+            
+          
+          前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文是本系列的第二篇文章，讲述matlab在线性代数学习中的应用
+行列式
+求矩阵$\begin{bmatrix} 1&amp;-2&amp;4\-5&amp; 2&amp;0\\1&amp;0&amp;3 \end{bmatrix}$的行列式
+
+A = [1 -2 4; -5 2 0; 1 0 3]
+d = det(A)
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-02 21:12" pubdate>
+              2020-10-02
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Math/">Math</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -519,5 +565,20 @@ Quick
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
