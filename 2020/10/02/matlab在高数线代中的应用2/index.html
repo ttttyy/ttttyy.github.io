@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Glitter">
   <meta name="keywords" content="">
-  <title>Matlab在高数线代学习中的应用(2).md - Glitter&#39;s Blog</title>
+  <title>Matlab在高数线代学习中的应用 - Glitter&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -225,7 +225,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Matlab在高数线代学习中的应用(2).md</h1>
+            <h1 style="display: none">Matlab在高数线代学习中的应用</h1>
             
               <p class="note note-info">
                 
@@ -236,13 +236,13 @@
             <div class="markdown-body" id="post-body">
               <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文是本系列的第二篇文章，讲述matlab在线性代数学习中的应用</p>
 <h4 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h4><ol>
-<li>求矩阵$\begin{bmatrix} 1&amp;-2&amp;4\ -5&amp; 2&amp;0\\1&amp;0&amp;3 \end{bmatrix}$的行列式</li>
+<li>求矩阵$\begin{bmatrix} 1&amp;-2&amp;4\-5&amp;2&amp;0\\1&amp;0&amp;3\end{bmatrix}$的行列式</li>
 </ol>
 <div class="hljs"><pre><code class="hljs matlab">A = [<span class="hljs-number">1</span> <span class="hljs-number">-2</span> <span class="hljs-number">4</span>; <span class="hljs-number">-5</span> <span class="hljs-number">2</span> <span class="hljs-number">0</span>; <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">3</span>]
 d = det(A)
 d=<span class="hljs-number">-32</span></code></pre></div>
 <h4 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h4><h5 id="求逆"><a href="#求逆" class="headerlink" title="求逆"></a>求逆</h5><ol>
-<li>计算矩阵$\begin{bmatrix}1&amp;0&amp;2\ -1&amp;5&amp;0\\0&amp;-3&amp;9\end{bmatrix}$的逆矩阵</li>
+<li>计算矩阵$\begin{bmatrix}1&amp;0&amp;2\-1&amp;5&amp;0\\0&amp;-3&amp;9\end{bmatrix}$的逆矩阵</li>
 </ol>
 <div class="hljs"><pre><code class="hljs matlab">X = [<span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">2</span>; <span class="hljs-number">-1</span> <span class="hljs-number">5</span> <span class="hljs-number">0</span>; <span class="hljs-number">0</span> <span class="hljs-number">3</span> <span class="hljs-number">-9</span>]
 Y = inv(X)
@@ -253,7 +253,7 @@ Y = <span class="hljs-number">3</span>×<span class="hljs-number">3</span>
     <span class="hljs-number">0.0588</span>    <span class="hljs-number">0.0588</span>   <span class="hljs-number">-0.0980</span></code></pre></div>
 <h5 id="LU分解"><a href="#LU分解" class="headerlink" title="LU分解"></a>LU分解</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过 LU分解，可以将一个矩阵$A$分解为一个上三角矩阵$U$、一个下三角矩阵$L$ 和一个置换矩阵$P$，并满足$PA=LU$</p>
 <ol>
-<li><p>求$\begin{bmatrix}10&amp;-7&amp;0\ -3&amp;2&amp;6\\5&amp;-1&amp;5\end{bmatrix}$的LU分解</p>
+<li><p>求$\begin{bmatrix}10&amp;-7&amp;0\-3&amp;2&amp;6\\5&amp;-1&amp;5\end{bmatrix}$的LU分解</p>
 <div class="hljs"><pre><code class="hljs matlab">A = [<span class="hljs-number">10</span> <span class="hljs-number">-7</span> <span class="hljs-number">0</span>
     <span class="hljs-number">-3</span>  <span class="hljs-number">2</span> <span class="hljs-number">6</span>
     <span class="hljs-number">5</span> <span class="hljs-number">-1</span> <span class="hljs-number">5</span>];
@@ -270,7 +270,7 @@ U = <span class="hljs-number">3</span>×<span class="hljs-number">3</span>
          <span class="hljs-number">0</span>    <span class="hljs-number">2.5000</span>    <span class="hljs-number">5.0000</span>
          <span class="hljs-number">0</span>         <span class="hljs-number">0</span>    <span class="hljs-number">6.2000</span></code></pre></div>
 <h5 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h5></li>
-<li><p>求矩阵$\begin{bmatrix}3&amp;2&amp;4\ -1&amp;1&amp;2\\9&amp;5&amp;10\end{bmatrix}$的秩</p>
+<li><p>求矩阵$\begin{bmatrix}3&amp;2&amp;4\-1&amp;1&amp;2\\9&amp;5&amp;10\end{bmatrix}$的秩</p>
 <div class="hljs"><pre><code class="hljs matlab">A = [<span class="hljs-number">3</span> <span class="hljs-number">2</span> <span class="hljs-number">4</span>; <span class="hljs-number">-1</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span>; <span class="hljs-number">9</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span>]
 rank(A)
 <span class="hljs-built_in">ans</span> = <span class="hljs-number">2</span></code></pre></div>
@@ -514,7 +514,7 @@ rref(A)
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Matlab在高数线代学习中的应用(2).md&nbsp;",
+        "Matlab在高数线代学习中的应用&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
