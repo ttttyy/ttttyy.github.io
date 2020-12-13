@@ -50,25 +50,6 @@
   
   
   <entry>
-    <title>sss</title>
-    <link href="/2020/07/18/sss/"/>
-    <url>/2020/07/18/sss/</url>
-    
-    <content type="html"><![CDATA[ <div class="hljs"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Hello,world"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;&#125;</code></pre></div><script type="math/tex; mode=display">\lim\limits_{x \to \infty} \exp(-x) = 0</script><script type="math/tex; mode=display">\sum_{x=1}^\infty{x^2}</script><script type="math/tex; mode=display">  \begin{bmatrix} a&b\\c&d \end{bmatrix} \quad</script><p>$\Gamma$、$\iota$、$\sigma$、$\phi$、$\upsilon$、$\Pi$、$\Bbbk$、$\heartsuit$、$\int$、$\oint$</p><div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> npprint(<span class="hljs-string">"hello,world"</span>)</code></pre></div>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>Math</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Hello World</title>
     <link href="/2020/07/18/hello-world/"/>
     <url>/2020/07/18/hello-world/</url>
