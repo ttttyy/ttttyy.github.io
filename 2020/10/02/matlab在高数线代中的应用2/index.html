@@ -295,7 +295,7 @@ null(A,<span class="hljs-string">'r'</span>)
      <span class="hljs-number">0</span>    <span class="hljs-number">-3</span>
      <span class="hljs-number">0</span>     <span class="hljs-number">1</span></code></pre></div>
 </li>
-<li><p>非齐次线性方程组<br>方程$A_{m \times n}x=b$,<br>$R(A) \neq R([A,b])$,方程无解<br>$R(A)=R([A,b])=n$,方程有唯一解，x=inv(A)<em>b<br>$R(A)=R([A,b])=r&lt; n $,有无穷多解,先用null(A)求通解，再用pinv(A)</em>b求特解<br>例：$\begin{cases}<br>2x_1-x_2+x_3-2x_4=1,\ <br>-x_1+x_2+2x_3+x_4=0\\<br>x_1-x_2-2x_3+2x_4=-6;<br>\end{cases}$</p>
+<li><p>非齐次线性方程组<br>方程$A_{m \times n}x=b$,<br>$R(A) \neq R([A,b])$,方程无解<br>$R(A)=R([A,b])=n$,方程有唯一解，x=inv(A)<em>b<br>$R(A)=R([A,b])=r&lt; n $,有无穷多解,先用null(A)求通解，再用pinv(A)</em>b求特解<br>例：$\begin{cases}<br>2x_1-x_2+x_3-2x_4=1,\ <br>-x_1+x_2+2x_3+x_4=0,\\<br>x_1-x_2-2x_3+2x_4=-6;<br>\end{cases}$</p>
 <div class="hljs"><pre><code class="hljs matlab">A=[<span class="hljs-number">2</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-2</span>;<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>;<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">2</span>];
 b=[<span class="hljs-number">1</span>;<span class="hljs-number">0</span>;<span class="hljs-number">-6</span>]
 null(A,<span class="hljs-string">'r'</span>)
@@ -303,7 +303,7 @@ null(A,<span class="hljs-string">'r'</span>)
 pinv(A)*b;</code></pre></div>
 </li>
 </ol>
-<h4 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h4><p>matlab中的eig函数可求矩阵的特征值与特征向量<br>例：求矩阵$A=\begin{bmatrix} 1&amp;1&amp;1&amp;1 \ 1&amp;1&amp;{-1}&amp;1\\1&amp;{-1}&amp;1&amp;{-1} \ 1&amp;{-1}&amp;{-1}&amp;1 \end{bmatrix}$的特征值与特征向量<br><div class="hljs"><pre><code class="hljs matlab">A=[<span class="hljs-number">2</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-2</span>;<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>;<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">2</span>];
+<h4 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h4><p>matlab中的eig函数可求矩阵的特征值与特征向量<br>例：求矩阵$A=\begin{bmatrix} 1&amp;1&amp;1&amp;1\\1&amp;1&amp;{-1}&amp;1\\1&amp;{-1}&amp;1&amp;{-1}\\1&amp;{-1}&amp;{-1}&amp;1\end{bmatrix}$的特征值与特征向量<br><div class="hljs"><pre><code class="hljs matlab">A=[<span class="hljs-number">2</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-2</span>;<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>;<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">2</span>];
 [V,D] = eig(A)
 V =    //特征向量组成的矩阵
 
