@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>ZooKeeper论文阅读笔记 - LoveIt</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="ZooKeeper论文阅读笔记" />
+        <title>ZooKeeper论文阅读笔记 - Glitt0x blog</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="ZooKeeper论文阅读笔记" />
 <meta property="og:description" content=" ZooKeeper是一个分布式开源协调服务，它为更加复杂的协调原语提供了一个简单高效的内核，并为开发者提供了API以便他们能开发自己的协调原语。
 ZooKeeper服务 服务概览 ZooKeeper给clients提供一个数据节点(znode)集合的抽象，client可以对这些znode进行数据操作，这些节点按层次结构组织。 client可以创造两种znode,
 regular, client可以显式地创建和删除这些znode ephermeral,client可以显示地创建或删除，也可以让系统在创建了znode的session结束时自动删除 另外，client可以在创建znode时设置sequential flag，拥有sequential flag的znode会有一个单调增的sequence value,即父节点的sequence value小于子节点的值。 ZooKeeper实现了watch机制，client在数据变化时可以不用轮询就可以及时收到通知。一个watch只会在一个session中触发一次。如果在一个session中数据变化了两次，client只会收到一次通知，因为在数据第一次变化后watch已被触发失效了。
@@ -79,8 +79,8 @@ ZooKeeper实现 请求处理器 leader收到写入请求后，会将其转换为
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
                     "url": "https:\/\/ttttyy.github.io\/images\/avatar.png",
-                    "width":  1536 ,
-                    "height":  1536 
+                    "width":  560 ,
+                    "height":  560 
                 }},"author": {
                 "@type": "Person",
                 "name": "Glitter"
@@ -92,7 +92,7 @@ ZooKeeper实现 请求处理器 leader收到写入请求后，会将其转换为
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="LoveIt"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Glitt0x blog</a>
+            <a href="/" title="Glitt0x blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Glitt0x blog</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 目录 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">简体中文<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
@@ -118,7 +118,7 @@ ZooKeeper实现 请求处理器 leader收到写入请求后，会将其转换为
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="LoveIt"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Glitt0x blog</a>
+                <a href="/" title="Glitt0x blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Glitt0x blog</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
