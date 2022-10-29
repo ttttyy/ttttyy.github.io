@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>RSA算法的数学原理及证明 - Glitt0x blog</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="RSA算法的数学原理及证明" />
+<meta property="og:description" content="概述 RSA是一种广泛使用的非对称加密算法，由由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）在1977年一起提出的，RSA就是他们三人姓氏头字母组成的。
+对极大整数做因式分解的难度决定了RSA算法的可靠性，目前被破解的最长的RSA密钥为829位。只要密钥的长度足够长，用RSA加密的信息可以认为是无法破解的。下面将介绍与RSA算法相关的数学概念，RSA的算法流程及正确性证明。
+与RSA算法相关的数学概念 互质 如果两个正整数除了1之外，没有别的公因数，就称这两个数互质。关于互质，有以下几个推论：
+任意两个质数构成互质关系； 一个数是质数，另一个数只要不是它的倍数，则这两个数互质； 如果两个数中，较大的那个数是质数，则这两个数互质； $1$和任意自然数互质； $p$是大于$1$的整数，则$p$和$p-1$互质； $p$是大于$1$的奇数，则$p$和$p-2$互质。 欧拉函数 算术基本定理 任意一个大于$1$的自然数，要么本身是质数，要么可以写成两个或以上质数的积，而且这些质因子按大小排列之后，写法仅有一种方式。 在数论中，对正整数$n$，欧拉函数$\varphi(n)$是小于等于$n$的正整数中与$n$互质的数的数目。
+\begin{equation} \varphi(n)= p_1^{k_1-1}p_2^{k_2-1}\cdots p_r{k_r-1}(p_1-1)(p_2-1)\cdots(p_r-1) \end{equation}
+$p_1，p_2 \dots p_r$是$n$的质因子，该函数也可等价的写成 \begin{equation} \varphi(n)=n(1-\frac{1}{p_1})(1-\frac{1}{p_2})\cdots(1-\frac{1}{p_r}) \end{equation}
+欧拉定理 欧拉定理是RSA算法的核心，理解了这个定理，就理解了RSA。欧拉定理指 如果两个正整数$a$和$n$互质，$\varphi(n)$是$n$的欧拉函数，则 \begin{equation} a^{\varphi(n)} \equiv 1 \ (mod \ n) \end{equation} 欧拉定理有一个特殊情况，假设正整数$a$与质数$p$互质，因为质数$p$的欧拉函数$\varphi(n)$等于$p-1$，则欧拉定理可以写成 \begin{equation} a^{p-1} \equiv 1 \ (mod \ n) \end{equation} 这就是著名的费马小定理，它是欧拉函数的特例。
+模反元素 如果两个正整数$a$和$n$互质，那么一定可以找到整数$b$，使得$ab-1$被$n$整除，这是$b$就叫做$a$的模反元素。 欧拉定理可以证明模反元素必然存在 \begin{equation} a^{\varphi(n)}=a \times a^{\varphi(n)-1} \equiv 1 \ (mod \ n) \end{equation} 可以看到，$a^{\varphi(n)-1}$就是$a$的模反元素。
+RSA密钥生成步骤 随机选择两个不相等的质数$p$和$q$。 假设$p=61，q=53$ 计算$p$和$q$的乘积$n$，$n = pq = 61 \times 53 = 3233$ 计算$n$的欧拉函数$\varphi(n)$，根据公式$\varphi(n)=(p-1)(q-1)=3120$ 欧拉函数性质 如果$p$为质数，则$\varphi(p) = p-1$; 如果$n$可以分解成两个互质的整数$p$和$q$之积，则$\varphi(n)=\varphi(p)\varphi(q)$ 在$1$到$\varphi(n)$之间随机选择一个与$\varphi(n)$互质的整数$e$ 计算$e$对于$\varphi(n)$的模反元素$d$。 \begin{equation} ed \equiv 1 \ (mod \ \varphi(n)) \end{equation} 上式等价于 \begin{equation} ed - 1 = k\varphi(n) \end{equation} 于是，找到模反元素$d$，实质上就是对下面这个二元一次方程求解 \begin{equation} ex&#43;\varphi(n)y = 1 \end{equation} 此方程可以用扩展欧几里得算法扩展求解，通过计算，得到$d=2753$。 将$n$和$e$封装成公钥，$n$和$d$封装成私钥。 RSA算法的可靠性 公钥$(n，e)$是公开的，只要得知了$d$，就等于私钥泄露，即已知$n$和$e$，是否可能推导出$d$?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ttttyy.github.io/rsa/" /><meta property="og:image" content="https://ttttyy.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-29T14:22:59+08:00" />
+<meta property="article:modified_time" content="2022-10-29T14:22:59+08:00" /><meta property="og:site_name" content="Glitt0x blog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://ttttyy.github.io/logo.png"/>
+
+<meta name="twitter:title" content="RSA算法的数学原理及证明"/>
+<meta name="twitter:description" content="概述 RSA是一种广泛使用的非对称加密算法，由由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）在1977年一起提出的，RSA就是他们三人姓氏头字母组成的。
+对极大整数做因式分解的难度决定了RSA算法的可靠性，目前被破解的最长的RSA密钥为829位。只要密钥的长度足够长，用RSA加密的信息可以认为是无法破解的。下面将介绍与RSA算法相关的数学概念，RSA的算法流程及正确性证明。
+与RSA算法相关的数学概念 互质 如果两个正整数除了1之外，没有别的公因数，就称这两个数互质。关于互质，有以下几个推论：
+任意两个质数构成互质关系； 一个数是质数，另一个数只要不是它的倍数，则这两个数互质； 如果两个数中，较大的那个数是质数，则这两个数互质； $1$和任意自然数互质； $p$是大于$1$的整数，则$p$和$p-1$互质； $p$是大于$1$的奇数，则$p$和$p-2$互质。 欧拉函数 算术基本定理 任意一个大于$1$的自然数，要么本身是质数，要么可以写成两个或以上质数的积，而且这些质因子按大小排列之后，写法仅有一种方式。 在数论中，对正整数$n$，欧拉函数$\varphi(n)$是小于等于$n$的正整数中与$n$互质的数的数目。
+\begin{equation} \varphi(n)= p_1^{k_1-1}p_2^{k_2-1}\cdots p_r{k_r-1}(p_1-1)(p_2-1)\cdots(p_r-1) \end{equation}
+$p_1，p_2 \dots p_r$是$n$的质因子，该函数也可等价的写成 \begin{equation} \varphi(n)=n(1-\frac{1}{p_1})(1-\frac{1}{p_2})\cdots(1-\frac{1}{p_r}) \end{equation}
+欧拉定理 欧拉定理是RSA算法的核心，理解了这个定理，就理解了RSA。欧拉定理指 如果两个正整数$a$和$n$互质，$\varphi(n)$是$n$的欧拉函数，则 \begin{equation} a^{\varphi(n)} \equiv 1 \ (mod \ n) \end{equation} 欧拉定理有一个特殊情况，假设正整数$a$与质数$p$互质，因为质数$p$的欧拉函数$\varphi(n)$等于$p-1$，则欧拉定理可以写成 \begin{equation} a^{p-1} \equiv 1 \ (mod \ n) \end{equation} 这就是著名的费马小定理，它是欧拉函数的特例。
+模反元素 如果两个正整数$a$和$n$互质，那么一定可以找到整数$b$，使得$ab-1$被$n$整除，这是$b$就叫做$a$的模反元素。 欧拉定理可以证明模反元素必然存在 \begin{equation} a^{\varphi(n)}=a \times a^{\varphi(n)-1} \equiv 1 \ (mod \ n) \end{equation} 可以看到，$a^{\varphi(n)-1}$就是$a$的模反元素。
+RSA密钥生成步骤 随机选择两个不相等的质数$p$和$q$。 假设$p=61，q=53$ 计算$p$和$q$的乘积$n$，$n = pq = 61 \times 53 = 3233$ 计算$n$的欧拉函数$\varphi(n)$，根据公式$\varphi(n)=(p-1)(q-1)=3120$ 欧拉函数性质 如果$p$为质数，则$\varphi(p) = p-1$; 如果$n$可以分解成两个互质的整数$p$和$q$之积，则$\varphi(n)=\varphi(p)\varphi(q)$ 在$1$到$\varphi(n)$之间随机选择一个与$\varphi(n)$互质的整数$e$ 计算$e$对于$\varphi(n)$的模反元素$d$。 \begin{equation} ed \equiv 1 \ (mod \ \varphi(n)) \end{equation} 上式等价于 \begin{equation} ed - 1 = k\varphi(n) \end{equation} 于是，找到模反元素$d$，实质上就是对下面这个二元一次方程求解 \begin{equation} ex&#43;\varphi(n)y = 1 \end{equation} 此方程可以用扩展欧几里得算法扩展求解，通过计算，得到$d=2753$。 将$n$和$e$封装成公钥，$n$和$d$封装成私钥。 RSA算法的可靠性 公钥$(n，e)$是公开的，只要得知了$d$，就等于私钥泄露，即已知$n$和$e$，是否可能推导出$d$?"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://ttttyy.github.io/rsa/" /><link rel="prev" href="https://ttttyy.github.io/first/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "RSA算法的数学原理及证明",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/ttttyy.github.io\/rsa\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/ttttyy.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  314 ,
+        "url": "https:\/\/ttttyy.github.io\/rsa\/","datePublished": "2022-10-29T14:22:59+08:00","dateModified": "2022-10-29T14:22:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/ttttyy.github.io\/images\/avatar.png",
+                    "width":  560 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Glitter"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Glitt0x blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Glitt0x blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 目录 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">简体中文<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/rsa/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Glitt0x blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Glitt0x blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">目录</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">简体中文<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/rsa/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RSA算法的数学原理及证明</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Glitter</a>
+</span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-29">2022-10-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;314 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/rsa/" class="leancloud_visitors" data-flag-title="RSA算法的数学原理及证明">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#与rsa算法相关的数学概念">与RSA算法相关的数学概念</a>
+          <ul>
+            <li><a href="#互质">互质</a></li>
+            <li><a href="#欧拉函数">欧拉函数</a></li>
+            <li><a href="#欧拉定理">欧拉定理</a></li>
+            <li><a href="#模反元素">模反元素</a></li>
+          </ul>
+        </li>
+        <li><a href="#rsa密钥生成步骤">RSA密钥生成步骤</a></li>
+        <li><a href="#rsa算法的可靠性">RSA算法的可靠性</a></li>
+        <li><a href="#rsa算法的加密与解密">RSA算法的加密与解密</a></li>
+        <li><a href="#私钥解密的证明">私钥解密的证明</a></li>
+        <li><a href="#参考文献">参考文献</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="概述">概述</h3>
+<p>  RSA是一种广泛使用的非对称加密算法，由由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）在1977年一起提出的，RSA就是他们三人姓氏头字母组成的。</p>
+<p>  对极大整数做因式分解的难度决定了RSA算法的可靠性，目前被破解的最长的RSA密钥为829位。只要密钥的长度足够长，用RSA加密的信息可以认为是无法破解的。下面将介绍与RSA算法相关的数学概念，RSA的算法流程及正确性证明。</p>
+<h3 id="与rsa算法相关的数学概念">与RSA算法相关的数学概念</h3>
+<h4 id="互质">互质</h4>
+<p>  如果两个正整数除了1之外，没有别的公因数，就称这两个数互质。关于互质，有以下几个推论：</p>
+<ul>
+<li>任意两个质数构成互质关系；</li>
+<li>一个数是质数，另一个数只要不是它的倍数，则这两个数互质；</li>
+<li>如果两个数中，较大的那个数是质数，则这两个数互质；</li>
+<li>$1$和任意自然数互质；</li>
+<li>$p$是大于$1$的整数，则$p$和$p-1$互质；</li>
+<li>$p$是大于$1$的奇数，则$p$和$p-2$互质。</li>
+</ul>
+<h4 id="欧拉函数">欧拉函数</h4>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>算术基本定理<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">任意一个大于$1$的自然数，要么本身是质数，要么可以写成两个或以上质数的积，而且这些质因子按大小排列之后，写法仅有一种方式。</div>
+        </div>
+    </div>
+<p>在数论中，对正整数$n$，欧拉函数$\varphi(n)$是小于等于$n$的正整数中与$n$互质的数的数目。</p>
+<p>\begin{equation}
+\varphi(n)= p_1^{k_1-1}p_2^{k_2-1}\cdots p_r{k_r-1}(p_1-1)(p_2-1)\cdots(p_r-1)
+\end{equation}</p>
+<p>$p_1，p_2 \dots p_r$是$n$的质因子，该函数也可等价的写成
+\begin{equation}
+\varphi(n)=n(1-\frac{1}{p_1})(1-\frac{1}{p_2})\cdots(1-\frac{1}{p_r})
+\end{equation}</p>
+<h4 id="欧拉定理">欧拉定理</h4>
+<p>  欧拉定理是RSA算法的核心，理解了这个定理，就理解了RSA。欧拉定理指
+如果两个正整数$a$和$n$互质，$\varphi(n)$是$n$的欧拉函数，则
+\begin{equation}
+a^{\varphi(n)} \equiv 1 \ (mod \ n)
+\end{equation}
+  欧拉定理有一个特殊情况，假设正整数$a$与质数$p$互质，因为质数$p$的欧拉函数$\varphi(n)$等于$p-1$，则欧拉定理可以写成
+\begin{equation}
+a^{p-1} \equiv 1 \ (mod \ n)
+\end{equation}
+这就是著名的费马小定理，它是欧拉函数的特例。</p>
+<h4 id="模反元素">模反元素</h4>
+<p>  如果两个正整数$a$和$n$互质，那么一定可以找到整数$b$，使得$ab-1$被$n$整除，这是$b$就叫做$a$的模反元素。
+欧拉定理可以证明模反元素必然存在
+\begin{equation}
+a^{\varphi(n)}=a \times a^{\varphi(n)-1} \equiv 1 \ (mod \ n)
+\end{equation}
+可以看到，$a^{\varphi(n)-1}$就是$a$的模反元素。</p>
+<h3 id="rsa密钥生成步骤">RSA密钥生成步骤</h3>
+<ol>
+<li>随机选择两个不相等的质数$p$和$q$。
+假设$p=61，q=53$</li>
+<li>计算$p$和$q$的乘积$n$，$n = pq = 61 \times 53 = 3233$</li>
+<li>计算$n$的欧拉函数$\varphi(n)$，根据公式$\varphi(n)=(p-1)(q-1)=3120$
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>欧拉函数性质<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>如果$p$为质数，则$\varphi(p) = p-1$;</li>
+<li>如果$n$可以分解成两个互质的整数$p$和$q$之积，则$\varphi(n)=\varphi(p)\varphi(q)$</li>
+</ul>
+</div>
+        </div>
+    </div></li>
+<li>在$1$到$\varphi(n)$之间随机选择一个与$\varphi(n)$互质的整数$e$</li>
+<li>计算$e$对于$\varphi(n)$的模反元素$d$。
+\begin{equation}
+ed \equiv 1 \ (mod \ \varphi(n))
+\end{equation}
+上式等价于
+\begin{equation}
+ed - 1 = k\varphi(n)
+\end{equation}
+于是，找到模反元素$d$，实质上就是对下面这个二元一次方程求解
+\begin{equation}
+ex+\varphi(n)y = 1
+\end{equation}
+此方程可以用<a href="https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95">扩展欧几里得算法</a>扩展求解，通过计算，得到$d=2753$。</li>
+<li>将$n$和$e$封装成公钥，$n$和$d$封装成私钥。</li>
+</ol>
+<h3 id="rsa算法的可靠性">RSA算法的可靠性</h3>
+<p>公钥$(n，e)$是公开的，只要得知了$d$，就等于私钥泄露，即已知$n$和$e$，是否可能推导出$d$?
+<div class="details admonition question open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-question-circle fa-fw" aria-hidden="true"></i>Question<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>$ed \equiv 1 \ (mod \ \varphi(n))$。只有知道$e$和$ \varphi(n) $，才能算出$d$。</li>
+<li>$n=pq$，只有将$n$因数分解，才能算出$p$和$q$。</li>
+<li>如果$n$可以分解成两个互质的整数$p$和$q$之积，则$\varphi(n)=\varphi(p)\varphi(q)$</li>
+</ul>
+</div>
+        </div>
+    </div>
+但是，分解质因数是很困难的，目前除了暴力破解没有别的办法，因此RSA算法的可靠性是基于这个困难的数学问题。</p>
+<h3 id="rsa算法的加密与解密">RSA算法的加密与解密</h3>
+<p>假设要发送的信息是$m$，加密后的信息为$c$，则加密过程为
+\begin{equation}
+c=m^e \ mod \ n
+\end{equation}
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>Warning<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">由数论知识可知，$m \ mod \ n$的值域是$[0，n)$，因此$m$的值域不能超过$pm$的值域，否则将产生碰撞，即$m$必须小于$n$。</div>
+        </div>
+    </div>
+解密过程为
+\begin{equation}
+m = c^d \ mod \ n
+\end{equation}</p>
+<h3 id="私钥解密的证明">私钥解密的证明</h3>
+<p>  证明私钥能解密，即是证明下式：
+\begin{equation}
+c^d \equiv m \ (mod \ n)
+\end{equation}
+由加密公式可得：
+\begin{equation}
+c=m^e-kn
+\end{equation}
+将其代入解密公式(10)，
+\begin{equation}
+(m^e-kn)^d \equiv m \ (mod \ n)
+\end{equation}
+等价于
+\begin{equation}
+m^{ed} \equiv m \ (mod \ n)
+\end{equation}
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">对$(m^e-kn)^d$二项式展开，除第一项外其他项都包含$kn$，都可以被$n$整除</div>
+        </div>
+    </div>
+由于
+\begin{equation}
+ed \equiv 1 \ (mod \ \varphi(n))
+\end{equation}
+所以
+\begin{equation}
+ed = h\varphi(n)+1
+\end{equation}
+将上式代入(14)：
+\begin{equation}
+m^{h\varphi(n)+1} \equiv m \ (mod \ n)
+\end{equation}
+接下来，分两种情况讨论，</p>
+<ul>
+<li>$m$和$n$互质
+根据欧拉定理，
+\begin{equation}
+m^{\varphi(n)} \equiv 1 \ (mod \ n)
+\end{equation}
+得到
+\begin{equation}
+(m^{\varphi(n)})^h \times m \equiv m \ (mod \ n)
+\end{equation}
+得证。</li>
+<li>$m$和$n$不是互质关系
+由于$n=pq$，则$m$必然等于$kp$或$kq$。
+假设$m=kp$，此时$k$和$q$必然互质，根据欧拉定理知：
+\begin{equation}
+(kp)^{q-1} \equiv 1 \ (mod \ q)
+\end{equation}
+进一步得到
+\begin{equation}
+[(kp)^{q-1}]^{h(p-1)} \times kp \equiv kp \ (mod \ q)
+\end{equation}
+将式(16)带入上式
+\begin{equation}
+(kp)^{ed} \equiv kp \ (mod \ q)
+\end{equation}
+即
+\begin{equation}
+(kp)^{ed} \equiv tq + kp
+\end{equation}
+这时$t$必然能被$p$整除，即有$t=t^{\prime}p$
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">这是因为上式两边同时除以$p$，可知等式左边必然能够整除，因此右边$t\frac{q}{p}+p$也必然是一个整数，又因为$p$和$q$互质，则$\frac{t}{p}$必然是一个整数，才能保证等式成立。</div>
+        </div>
+    </div>
+因此上式可写为
+\begin{equation}
+(kp)^{ed} = t^{\prime}pq+kp
+\end{equation}
+将$m=kp$，$n=pq$代入得
+\begin{equation}
+m^{ed}=t^{prime}n+m
+\end{equation}
+即
+\begin{equation}
+m^{ed} \equiv m \ (mod \ n)
+\end{equation}
+得证。</li>
+</ul>
+<h3 id="参考文献">参考文献</h3>
+<ul>
+<li>[1] <a href="https://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html]" target="_blank" rel="noopener noreffer">RSA算法原理（一）</a>
+</li>
+<li>[2] <a href="https://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener noreffer">RSA算法原理（二）</a>
+</li>
+<li>[3] <a href="https://cnodejs.org/topic/5bb9c31e15e4fd1923f48d0b" target="_blank" rel="noopener noreffer">RSA算法的数学原理与证明</a>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-10-29</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/rsa/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://ttttyy.github.io/rsa/" data-title="RSA算法的数学原理及证明" data-via="xxxx"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://ttttyy.github.io/rsa/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://ttttyy.github.io/rsa/" data-title="RSA算法的数学原理及证明"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://ttttyy.github.io/rsa/" data-title="RSA算法的数学原理及证明"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://ttttyy.github.io/rsa/" data-title="RSA算法的数学原理及证明" data-ralateuid="u/6398381223"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/first/" class="prev" rel="prev" title="第一篇文章"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>第一篇文章</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Glitter</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"IjLiTP79HEjCralEuhJEHYME-gzGzoHsz","appKey":"vgFS5q4Q8xyx2oWrUEOaAVkq","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
