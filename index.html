@@ -117,6 +117,13 @@
 <a href="mailto:mianbtaeno@gmail.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a>
 </div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/ecc/">理解椭圆曲线密码</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Glitter</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-30">2022-10-30</time></span></div><div class="content">群 定义 群$(G,\cdot)$是由非空集合$G$和二元运算$\cdot$构成的，且符合以下四个性质的数学结构。
+封闭性：对于所有$G$中的$a$，$b$，运算$a\cdot b$的结果也在$G$中； 结合律：对于所有$G$中的$a$，$b$和$c$，等式$(a\cdot b)\cdot c = a\cdot (b \cdot c)$成立； 单位元：存在$G$中的一个元素$e$，使得对于所有$G$中的元素$a$，总有等式$e \cdot a = a \cdot e = a$成立； 逆元：对于每个$G$中的$a$，存在$G$中的一个元素$b$使得总有$a \cdot b = b \cdot a = e$，则称$b$为$a$在$G$中的逆元，$e$为单位元。 例如，整数集和整数间的加法$(\mathbb{Z},+)$构成一个群，单位元是$0$，一个整数的逆元是它的相反数。 相关概念 若代数结构$(G,\cdot)$满足封闭性和结合律性质，则称$(G,\cdot)$为一个半群。 对于$G$中的所有$a$，$b$,等式$a\cdot b = b \cdot a$成立，则群$(G,\cdot)$为可交换群。 一个群可以有有限个元素，此时，元素的个数称为群的阶，记为$|G|$，也可以含有无限个元素。 给定群$G$，如果集合$H \subseteq G$，且$H$中包含了单位元，$H$中每个元素的逆元也在$H$中，则称$H$为$G$的子群。 给定群$(G,\cdot)$，求幂操作即对一个元素$a$应用$n$次运算符$cdot$，表示为 \begin{equation} a^n = \underbrace{a\cdot a \cdot a \cdots a}_{n} \end{equation} 特别的，$a^0=e$ 循环群：是指能由群中的某个元素做幂运算而生成的群，例如整数加群$(\mathbb{Z},+)$是一个无限循环群，生成元为$1$或$-1$ 拉格朗日定理：设$H$是有限群$G$的一个子群，则$H$的阶整除$G$的阶。 推论1：若$a$是有限群$G$的一个元素，则$a$的阶整除$G$的阶。 推论2：阶为质数的群都是循环群。 推论3：费马小定理是拉格朗日定理的一个简单推论 环 环是由集合$R$和定义在$R$的加法和乘法两种二元运算构成的，且满足以下性质的代数结构$(R,+,\cdot)$：
+$(R,+)$构成交换群，其单位元记为$0$，$R$中元素$a$的加法逆元记为$-a$； $(R,\cdot)$构成半群； 乘法对于加法满足分配律，即对所有的$a,b,c \in R$有： $a \cdot (b+c) = (a\cdot b)+(a\cdot c)$ $(a+b)\cdot c = (a \cdot c) + (b \cdot c)$ 特殊的环 交换环：若环$(R,\cdot)$满足交换律，则$R$称为交换环 幺环：若环$R$存在乘法单位元$1$，则称$R$为幺环。 除环：若幺环$R$的所有非零元素存在乘法逆元$a^{-1}$，则称$R$为除环。 域 在抽象代数中，域是一种集合，在这个集合中可以对集合的非零元素进行加减乘除，其运算定义与行为就如同有理数和实数一样。域是交换除环。</div><div class="post-footer">
+        <a href="/ecc/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/rsa/">RSA算法的数学原理及证明</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Glitter</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-29">2022-10-29</time></span></div><div class="content">概述 RSA是一种广泛使用的非对称加密算法，由由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）在1977年一起提出的，RSA就是他们三人姓氏头字母组成的。
