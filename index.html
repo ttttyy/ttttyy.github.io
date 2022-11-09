@@ -117,12 +117,25 @@
 <a href="mailto:mianbtaeno@gmail.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a>
 </div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/newton/">牛顿迭代法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Glitter</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2022-11-09">2022-11-09</time></span></div><div class="content">牛顿法是一种在实数域和复数域上近似求解方程的方法，最初由牛顿在《流数法》中提出，此方法使用函数$f(x)$的泰勒级数的前面几项来寻找方程$f(x)=0$的根。
+方法说明 首先，选择一个接近函数$f(x)$零点的$x_0$，计算相应的$f(x_0)$和切线斜率$f^{\prime}(x_0)$。然后计算穿过点$(x_0,f(x_0))$并且斜率为$f^{\prime}(x_0)$的直线与$x$州的交点的坐标，即求下面方程的解： \begin{equation} 0=(x-x_0)\cdot f^{\prime}(x_0)+f(x_0) \end{equation}
+将新求得的点的$x$坐标命名为$x_1$,通常$x_1$会比$x_0$更接近方程$f(x)=0$的解。因此可以利用$x_1$开始下一轮迭代。迭代公式可化简为如下所示： \begin{equation} x_{n+1}=x_n-\frac{f(x_n)}{f^{\prime}(x_n)} \end{equation}
+随着迭代次数的增加，$x_n$会越来越接近方程的解。
+示例 求解平方根 设$f(x)=x^2-n$，$f(x)=0$的解就是$\sqrt{n}$的近似值，于是有 \begin{equation} x_{i+1}=x_i-\frac{x^2_i-n}{2x_i}=\frac{x_i+\frac{n}{x_i}}{2} \end{equation}
+代码如下
+1 2 3 4 5 6 7 8 9 10 11 double sqrt_newton(double n) { const double eps = 1e-15; double x = 1; while(true){ double nx = ( x + n / x ) / 2; if(abs(x -nx) &lt; eps) break; x = nx; } return x; } </div><div class="post-footer">
+        <a href="/newton/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ecc/">理解椭圆曲线密码</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Glitter</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-30">2022-10-30</time></span></div><div class="content">群 定义 群$(G,\cdot)$是由非空集合$G$和二元运算$\cdot$构成的，且符合以下四个性质的数学结构。
 封闭性：对于所有$G$中的$a$，$b$，运算$a\cdot b$的结果也在$G$中； 结合律：对于所有$G$中的$a$，$b$和$c$，等式$(a\cdot b)\cdot c = a\cdot (b \cdot c)$成立； 单位元：存在$G$中的一个元素$e$，使得对于所有$G$中的元素$a$，总有等式$e \cdot a = a \cdot e = a$成立； 逆元：对于每个$G$中的$a$，存在$G$中的一个元素$b$使得总有$a \cdot b = b \cdot a = e$，则称$b$为$a$在$G$中的逆元，$e$为单位元。 例如，整数集和整数间的加法$(\mathbb{Z},+)$构成一个群，单位元是$0$，一个整数的逆元是它的相反数。 相关概念 若代数结构$(G,\cdot)$满足封闭性和结合律性质，则称$(G,\cdot)$为一个半群。 对于$G$中的所有$a$，$b$,等式$a\cdot b = b \cdot a$成立，则群$(G,\cdot)$为可交换群。 一个群可以有有限个元素，此时，元素的个数称为群的阶，记为$|G|$，也可以含有无限个元素。 给定群$G$，如果集合$H \subseteq G$，且$H$中包含了单位元，$H$中每个元素的逆元也在$H$中，则称$H$为$G$的子群。 给定群$(G,\cdot)$，求幂操作即对一个元素$a$应用$n$次运算符$cdot$，表示为 \begin{equation} a^n = \underbrace{a\cdot a \cdot a \cdots a}_{n} \end{equation} 特别的，$a^0=e$ 循环群：是指能由群中的某个元素做幂运算而生成的群，例如整数加群$(\mathbb{Z},+)$是一个无限循环群，生成元为$1$或$-1$ 拉格朗日定理：设$H$是有限群$G$的一个子群，则$H$的阶整除$G$的阶。 推论1：若$a$是有限群$G$的一个元素，则$a$的阶整除$G$的阶。 推论2：阶为质数的群都是循环群。 推论3：费马小定理是拉格朗日定理的一个简单推论 环 环是由集合$R$和定义在$R$的加法和乘法两种二元运算构成的，且满足以下性质的代数结构$(R,+,\cdot)$：
 $(R,+)$构成交换群，其单位元记为$0$，$R$中元素$a$的加法逆元记为$-a$； $(R,\cdot)$构成半群； 乘法对于加法满足分配律，即对所有的$a,b,c \in R$有： $a \cdot (b+c) = (a\cdot b)+(a\cdot c)$ $(a+b)\cdot c = (a \cdot c) + (b \cdot c)$ 特殊的环 交换环：若环$(R,\cdot)$满足交换律，则$R$称为交换环 幺环：若环$R$存在乘法单位元$1$，则称$R$为幺环。 除环：若幺环$R$的所有非零元素存在乘法逆元$a^{-1}$，则称$R$为除环。 域 在抽象代数中，域是一种集合，在这个集合中可以对集合的非零元素进行加减乘除，其运算定义与行为就如同有理数和实数一样。域是交换除环。</div><div class="post-footer">
-        <a href="/ecc/">Read More</a></div>
+        <a href="/ecc/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ecc/">ECC</a>,&nbsp;<a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/rsa/">RSA算法的数学原理及证明</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Glitter</a>
@@ -135,7 +148,8 @@ $p_1，p_2 \dots p_r$是$n$的质因子，该函数也可等价的写成 \begin{
 欧拉定理 欧拉定理是RSA算法的核心，理解了这个定理，就理解了RSA。欧拉定理指 如果两个正整数$a$和$n$互质，$\varphi(n)$是$n$的欧拉函数，则 \begin{equation} a^{\varphi(n)} \equiv 1 \ (mod \ n) \end{equation} 欧拉定理有一个特殊情况，假设正整数$a$与质数$p$互质，因为质数$p$的欧拉函数$\varphi(n)$等于$p-1$，则欧拉定理可以写成 \begin{equation} a^{p-1} \equiv 1 \ (mod \ n) \end{equation} 这就是著名的费马小定理，它是欧拉函数的特例。
 模反元素 如果两个正整数$a$和$n$互质，那么一定可以找到整数$b$，使得$ab-1$被$n$整除，这是$b$就叫做$a$的模反元素。 欧拉定理可以证明模反元素必然存在 \begin{equation} a^{\varphi(n)}=a \times a^{\varphi(n)-1} \equiv 1 \ (mod \ n) \end{equation} 可以看到，$a^{\varphi(n)-1}$就是$a$的模反元素。
 RSA密钥生成步骤 随机选择两个不相等的质数$p$和$q$。 假设$p=61，q=53$ 计算$p$和$q$的乘积$n$，$n = pq = 61 \times 53 = 3233$ 计算$n$的欧拉函数$\varphi(n)$，根据公式$\varphi(n)=(p-1)(q-1)=3120$ 欧拉函数性质 如果$p$为质数，则$\varphi(p) = p-1$; 如果$n$可以分解成两个互质的整数$p$和$q$之积，则$\varphi(n)=\varphi(p)\varphi(q)$ 在$1$到$\varphi(n)$之间随机选择一个与$\varphi(n)$互质的整数$e$ 计算$e$对于$\varphi(n)$的模反元素$d$。 \begin{equation} ed \equiv 1 \ (mod \ \varphi(n)) \end{equation} 上式等价于 \begin{equation} ed - 1 = k\varphi(n) \end{equation} 于是，找到模反元素$d$，实质上就是对下面这个二元一次方程求解 \begin{equation} ex+\varphi(n)y = 1 \end{equation} 此方程可以用扩展欧几里得算法扩展求解，通过计算，得到$d=2753$。 将$n$和$e$封装成公钥，$n$和$d$封装成私钥。 RSA算法的可靠性 公钥$(n，e)$是公开的，只要得知了$d$，就等于私钥泄露，即已知$n$和$e$，是否可能推导出$d$?</div><div class="post-footer">
-        <a href="/rsa/">Read More</a></div>
+        <a href="/rsa/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a>,&nbsp;<a href="/tags/rsa/">RSA</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/first/">第一篇文章</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Glitter</a>
