@@ -3,9 +3,18 @@
         <title>Glitt0x blog</title>
         <link>https://ttttyy.github.io/</link>
         <description>Hugo theme - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 09 Nov 2022 09:26:36 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 17 Oct 2023 09:49:41 &#43;0800</lastBuildDate>
             <atom:link href="https://ttttyy.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>C&#43;&#43;设计模式（一）：单例模式</title>
+    <link>https://ttttyy.github.io/singleton/</link>
+    <pubDate>Tue, 17 Oct 2023 09:49:41 &#43;0800</pubDate>
+    <author>Glitter</author>
+    <guid>https://ttttyy.github.io/singleton/</guid>
+    <description><![CDATA[单例模式是一种创建性设计模式，能够保证一个类只有一个实例，并提供一个访问该实例的全局节点。
+适用场景 程序的某个类对于所有客户端只有一个可访问的实例。如操作系统中的文件系统； 创建一个对象需要消耗的资源过多，可以使用单例模式。如程序与数据库的连接。 实现方式 默认的构造函数，拷贝构造函数，赋值构造函数声明为私有，禁止再类外部创建该对象； 在类中添加一个私有静态成员变量用于保存单例实例； 声明一个公有静态方法来获取单例实例。 优缺点 优点 缺点 保证一个类只有一个实例和一个全局访问点，减少了内存开销； 避免了对资源的多重占用。 违反了单一职责原则，该模式同时解决了两个问题； 没有接口，无法继承。 实现 懒汉模式：直到第一次用到类的实例时才实例化。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 // 线程安全的懒汉模式实现 class Singleton { private: static Singleton* instance; static std::mutex mutex_; Singleton() {} Singleton(const Singleton&amp;) = delete; Singleton&amp; operator=(const Singleton&amp;) = delete; public: static Singleton* getInstance() { std::lock_guard&lt;std::mutex&gt; lock(mutex_); if (instance == nullptr) { instance = new Singleton(); } return instance; } }; Singleton* Singleton::instance = nullptr; std::mutex Singleton::mutex_; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 // 智能指针实现 class Singleton { public: static std::shared_ptr&lt;Singleton&gt; getInstance() { // 确保初始化函数只会被调用一次，即使是多线程环境 std::call_once(initInstanceFlag, &amp;Singleton::initSingleton); return instance; } private: Singleton() {} ~Singleton() {} static void initSingleton() { instance = std::make_shared&lt;Singleton&gt;(); } static std::shared_ptr&lt;Singleton&gt; instance; // std::once_flag变量用于标识初始化函数是否已经被调用过 static std::once_flag initInstanceFlag; }; std::shared_ptr&lt;Singleton&gt; Singleton::instance = nullptr; std::once_flag Singleton::initInstanceFlag; 饿汉模式：类定义时就初始化 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 // 线程安全的饿汉模式实现，线程安全不用加锁 class Singleton { private: static Singleton instance; Singleton() {} Singleton(const Singleton&amp;) = delete; Singleton&amp; operator=(const Singleton&amp;) = delete; public: static Singleton&amp; getInstance() { return instance; } }; Singleton Singleton::instance; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 // 智能指针实现 class Singleton { public: static std::shared_ptr&lt;Singleton&gt; getInstance() { return instance; } private: Singleton() {} Singleton(const Singleton&amp;) = delete; Singleton&amp; operator=(const Singleton&amp;) = delete; static std::shared_ptr&lt;Singleton&gt; instance; // 静态智能指针 // 在类内部初始化单例对象 static std::shared_ptr&lt;Singleton&gt; initializeInstance() { return std::make_shared&lt;Singleton&gt;(); } }; // 在类外部初始化静态成员变量 std::shared_ptr&lt;Singleton&gt; Singleton::instance = Singleton::initializeInstance(); ]]></description>
+</item>
+<item>
     <title>牛顿迭代法</title>
     <link>https://ttttyy.github.io/newton/</link>
     <pubDate>Wed, 09 Nov 2022 09:26:36 &#43;0800</pubDate>
